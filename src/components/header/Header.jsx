@@ -6,7 +6,7 @@ import LoginModal from '../login/LoginModal.jsx';
 
 export default function Header() {
   const {
-    user: { isLoggedIn, name, roles, authenticateRole }
+    user: { isLoggedIn, name, authenticateRole }
   } = useAuth();
 
   const handleLoginLogOut = () => {
@@ -44,19 +44,28 @@ export default function Header() {
           Home
         </Menu.Item>
 
-        <Menu.Item as={NavLink} exact to='/jokes' name='jokes'>
-          Jokes
-        </Menu.Item>
-
-        {authenticateRole('admin') && (
-          <Menu.Item as={NavLink} exact to='/scrape' name='scrape'>
-            Scrape
+        {!(authenticateRole('admin') || authenticateRole('user')) && (
+          <Menu.Item as={NavLink} exact to='/movieInfo' name='movieInfo'>
+            Movie info
           </Menu.Item>
         )}
 
-        <Menu.Item as={NavLink} exact to='/content3' name='jokes'>
-          Content 3
-        </Menu.Item>
+        {(authenticateRole('admin') || authenticateRole('user')) && (
+          <Menu.Item
+            as={NavLink}
+            exact
+            to='/detailedMovieInfo'
+            name='detailedMovieInfo'
+          >
+            Movie info VIP
+          </Menu.Item>
+        )}
+
+        {authenticateRole('admin') && (
+          <Menu.Item as={NavLink} exact to='/movieCount' name='movieCount'>
+            Movie count
+          </Menu.Item>
+        )}
 
         {handleLoginLogOut()}
       </Container>

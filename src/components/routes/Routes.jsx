@@ -1,12 +1,12 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import NoMatch from '../noMatch/';
-import Content3 from '../content3/';
-import Scrape from '../scrape/Scrape.jsx';
-import Jokes from '../jokes/';
 import Home from '../home/';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import Unauthorized from '../unauthorized/';
+import MovieInfo from '../movies/MovieInfo.jsx';
+import MovieInfoWRatings from '../movies/MovieInfoWRatings.jsx';
+import MovieCount from '../movies/MovieCount.jsx';
 
 const Routes = () => {
   return (
@@ -15,17 +15,20 @@ const Routes = () => {
         <Home />
       </Route>
 
-      <ProtectedRoute authenticatedRoles={['admin']} path='/jokes'>
-        <Jokes />
-      </ProtectedRoute>
-
-      <ProtectedRoute authenticatedRoles={['admin']} path='/scrape'>
-        <Scrape />
-      </ProtectedRoute>
-
-      <Route path='/content3'>
-        <Content3 />
+      <Route path='/movieInfo'>
+        <MovieInfo />
       </Route>
+
+      <ProtectedRoute
+        authenticatedRoles={['admin', 'user']}
+        path='/detailedMovieInfo'
+      >
+        <MovieInfoWRatings />
+      </ProtectedRoute>
+
+      <ProtectedRoute authenticatedRoles={['admin']} path='/movieCount'>
+        <MovieCount />
+      </ProtectedRoute>
 
       <Route path='/unauthorized'>
         <Unauthorized />

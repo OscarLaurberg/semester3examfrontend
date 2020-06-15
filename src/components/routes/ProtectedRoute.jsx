@@ -9,14 +9,13 @@ const ProtectedRoute = ({ children, authenticatedRoles, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={({ location }) =>
+      render={() =>
         isLoggedIn && roles.some((r) => authenticatedRoles.indexOf(r) >= 0) ? (
           children
         ) : (
           <Redirect
             to={{
-              pathname: '/unauthorized',
-              state: { from: location }
+              pathname: '/unauthorized'
             }}
           />
         )

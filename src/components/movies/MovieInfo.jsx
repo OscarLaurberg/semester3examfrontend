@@ -7,7 +7,6 @@ export default function MovieInfo() {
   const [movie, setMovie] = React.useState({});
 
   const handleSubmit = () => {
-    console.log(movieTitleInput);
     const opts = apiUtils.makeOptions('GET');
     apiUtils
       .fetchData(`/movie-info/${movieTitleInput}`, opts)
@@ -16,10 +15,6 @@ export default function MovieInfo() {
       })
       .catch(console.log);
   };
-
-  React.useEffect(() => {
-    console.log('yoyo');
-  });
 
   return (
     <>

@@ -7,7 +7,6 @@ export default function MovieInfoWRatings() {
   const [movie, setMovie] = React.useState({});
 
   const handleSubmit = () => {
-    console.log(movieTitleInput);
     const opts = apiUtils.makeOptions('GET');
     apiUtils
       .fetchData(`/movie-info-all-ratings/${movieTitleInput}`, opts)

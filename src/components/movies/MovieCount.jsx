@@ -8,7 +8,6 @@ export default function MovieCount() {
   const [count, setCount] = React.useState();
 
   const handleSubmit = () => {
-    console.log(movieTitleInput);
     const opts = apiUtils.makeOptions('GET');
     apiUtils
       .fetchData(`/movie-count/${movieTitleInput}`, opts)
